@@ -781,12 +781,12 @@ exists or setup the property manually. For example like this:
                 COMPILATION SECTION
             -->
     <target depends="init" if="no.dist.ear.dir" name="-deps-module-jar" unless="no.deps">
-        <ant antfile="${project.PizzaEJB_JPA_AW-lib}/build.xml" inheritall="false" target="jar">
+        <ant antfile="${project.PizzaEJB_JPA_AW_lib}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
     </target>
     <target depends="init" if="dist.ear.dir" name="-deps-ear-jar" unless="no.deps">
-        <ant antfile="${project.PizzaEJB_JPA_AW-lib}/build.xml" inheritall="false" target="jar">
+        <ant antfile="${project.PizzaEJB_JPA_AW_lib}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
     </target>
@@ -801,33 +801,33 @@ exists or setup the property manually. For example like this:
     </target>
     <target depends="compile,-library-inclusion-in-archive-weblogic,-library-inclusion-in-archive-by-user" name="library-inclusion-in-archive"/>
     <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user">
-        <copyfiles files="${reference.PizzaEJB_JPA_AW-lib.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.appserv-rt.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.gf-client.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.javaee.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jndi-properties.jar}" todir="${build.classes.dir}"/>
+        <copyfiles files="${reference.PizzaEJB_JPA_AW_lib.jar}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
-        <basename file="${reference.PizzaEJB_JPA_AW-lib.jar}" property="manifest.reference.PizzaEJB_JPA_AW-lib.jar"/>
         <basename file="${file.reference.appserv-rt.jar}" property="manifest.file.reference.appserv-rt.jar"/>
         <basename file="${file.reference.gf-client.jar}" property="manifest.file.reference.gf-client.jar"/>
         <basename file="${file.reference.javaee.jar}" property="manifest.file.reference.javaee.jar"/>
         <basename file="${file.reference.jndi-properties.jar}" property="manifest.file.reference.jndi-properties.jar"/>
+        <basename file="${reference.PizzaEJB_JPA_AW_lib.jar}" property="manifest.reference.PizzaEJB_JPA_AW_lib.jar"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
             <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 "/>
-            <attribute name="jar-1-Extension-Name" value="${manifest.reference.PizzaEJB_JPA_AW-lib.jar}"/>
-            <attribute name="jar-2-Extension-Name" value="${manifest.file.reference.appserv-rt.jar}"/>
-            <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.gf-client.jar}"/>
-            <attribute name="jar-4-Extension-Name" value="${manifest.file.reference.javaee.jar}"/>
-            <attribute name="jar-5-Extension-Name" value="${manifest.file.reference.jndi-properties.jar}"/>
+            <attribute name="jar-1-Extension-Name" value="${manifest.file.reference.appserv-rt.jar}"/>
+            <attribute name="jar-2-Extension-Name" value="${manifest.file.reference.gf-client.jar}"/>
+            <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.javaee.jar}"/>
+            <attribute name="jar-4-Extension-Name" value="${manifest.file.reference.jndi-properties.jar}"/>
+            <attribute name="jar-5-Extension-Name" value="${manifest.reference.PizzaEJB_JPA_AW_lib.jar}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
-        <copyfiles files="${reference.PizzaEJB_JPA_AW-lib.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.appserv-rt.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.gf-client.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.javaee.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jndi-properties.jar}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${reference.PizzaEJB_JPA_AW_lib.jar}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">
@@ -1211,7 +1211,7 @@ exists or setup the property manually. For example like this:
                 CLEANUP SECTION
             -->
     <target depends="init" name="deps-clean" unless="no.deps">
-        <ant antfile="${project.PizzaEJB_JPA_AW-lib}/build.xml" inheritall="false" target="clean"/>
+        <ant antfile="${project.PizzaEJB_JPA_AW_lib}/build.xml" inheritall="false" target="clean"/>
     </target>
     <target depends="init" name="-do-clean">
         <delete dir="${build.dir}"/>

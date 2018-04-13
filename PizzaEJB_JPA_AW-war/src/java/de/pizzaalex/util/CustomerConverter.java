@@ -17,6 +17,7 @@ public class CustomerConverter implements Converter {
     @Inject
     CustomerBean cusBean;
 
+    @Override
     public Object getAsObject(FacesContext facesContext, UIComponent component, String submittedValue) {
         if (submittedValue.trim().equals("")) {
             return null;
@@ -25,7 +26,7 @@ public class CustomerConverter implements Converter {
                 int number = Integer.parseInt(submittedValue);
 
                 for (Customer cus : cusBean.getCustomers()) {
-                    if (cus.getId() == number) {
+                    if (cus.getUserID()== number) {
                         return cus;
                     }
                 }
@@ -38,11 +39,12 @@ public class CustomerConverter implements Converter {
         return null;
     }
 
+    @Override
     public String getAsString(FacesContext facesContext, UIComponent component, Object value) {
         if (value == null || value.equals("")) {
             return "";
         } else {
-            return String.valueOf(((Customer) value).getId());
+            return String.valueOf(((Customer) value).getUserID());
         }
     }
 }

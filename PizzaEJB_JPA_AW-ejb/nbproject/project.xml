@@ -5,11 +5,11 @@
         <data xmlns="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
             <name>PizzaEJB_JPA_AW-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
-            <included-library dirs="200">reference.PizzaEJB_JPA_AW-lib.jar</included-library>
             <included-library dirs="200">file.reference.appserv-rt.jar</included-library>
             <included-library dirs="200">file.reference.gf-client.jar</included-library>
             <included-library dirs="200">file.reference.javaee.jar</included-library>
             <included-library dirs="200">file.reference.jndi-properties.jar</included-library>
+            <included-library dirs="200">reference.PizzaEJB_JPA_AW_lib.jar</included-library>
             <source-roots>
                 <root id="src.dir" name="Source Packages"/>
             </source-roots>
@@ -19,7 +19,7 @@
         </data>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
             <reference>
-                <foreign-project>PizzaEJB_JPA_AW-lib</foreign-project>
+                <foreign-project>PizzaEJB_JPA_AW_lib</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>

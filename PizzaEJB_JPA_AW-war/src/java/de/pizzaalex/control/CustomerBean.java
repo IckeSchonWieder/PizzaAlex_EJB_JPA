@@ -3,8 +3,9 @@ package de.pizzaalex.control;
 
 import de.pizzaalex.ejb.DataBeanRemote;
 import de.pizzaalex.model.Customer;
-import de.pizzaalex.model.Order;
+import de.pizzaalex.model.MyOrder;
 import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -24,7 +25,7 @@ public class CustomerBean extends LookUpData {
     private Customer selectedCustomer;
     private boolean hasAcc;
     private DataBeanRemote dbr;
-    private ArrayList<Customer> customers;
+    private List<Customer> customers;
     
     @Inject
     LoginBean lb;
@@ -49,7 +50,7 @@ public class CustomerBean extends LookUpData {
     }
 
     
-    public ArrayList<Customer> getCustomers() {
+    public List<Customer> getCustomers() {
         return customers;
     }
     
@@ -71,7 +72,7 @@ public class CustomerBean extends LookUpData {
         Customer found = null;
         
         for (Customer cus:customers) {
-            if (cus.getId() == id) {
+            if (cus.getUserID()== id) {
                 found = cus;
             } 
         }
@@ -107,7 +108,7 @@ public class CustomerBean extends LookUpData {
     }
     
     
-    public String checkOrder(Order order){
+    public String checkOrder(MyOrder order){
         order.setCus(selectedCustomer);
         return "check";
     }

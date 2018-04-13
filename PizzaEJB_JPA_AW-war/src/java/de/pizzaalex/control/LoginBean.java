@@ -5,7 +5,7 @@
  */
 package de.pizzaalex.control;
 
-import de.pizzaalex.model.User;
+import de.pizzaalex.model.MyUser;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @SessionScoped
 @Named
 public class LoginBean implements Serializable{
-    private User user;
+    private MyUser user;
     private Boolean loggedIn;
     HttpServletRequest req;
     
@@ -31,14 +31,14 @@ public class LoginBean implements Serializable{
     CustomerBean cb;
     
     public LoginBean() {
-        user = new User();
+        user = new MyUser();
     }
     
-    public User getUser() {
+    public MyUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(MyUser user) {
         this.user = user;
     }
 
@@ -68,6 +68,7 @@ public class LoginBean implements Serializable{
         req =(HttpServletRequest) FacesContext.getCurrentInstance()
                 .getExternalContext().getRequest();
         try {
+            System.out.println("User einloggen: " + user.getUsername() + user.getPassword());
             
             req.login(user.getUsername().toLowerCase(), user.getPassword());
             loggedIn=true;
@@ -95,7 +96,7 @@ public class LoginBean implements Serializable{
             req.logout();
             loggedIn = false;
            // cb.setSelectedCustomer(selectedCustomer);
-            user = new User();
+            user = new MyUser();
         } catch (ServletException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }

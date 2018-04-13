@@ -10,7 +10,7 @@
     <h:body>
         <h1><h:outputText value="#{label.indexHeader}" /></h1>
         <h:form rendered="#{loginBean.loggedIn}">
-            <h:outputText value="#{label.loggedIn += loginBean.user.role}" /> <br />
+            <h:outputText value="#{label.loggedIn += loginBean.user.userRole}" /> <br />
             <h:commandLink value="#{label.logOut}" action="#{loginBean.logout()}" />
         </h:form>
         <hr/>

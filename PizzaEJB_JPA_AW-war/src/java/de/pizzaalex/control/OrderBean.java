@@ -2,10 +2,9 @@
 package de.pizzaalex.control;
 
 import de.pizzaalex.ejb.DataBeanRemote;
-import de.pizzaalex.model.Order;
+import de.pizzaalex.model.MyOrder;
 import de.pizzaalex.model.OrderedItem;
 import de.pizzaalex.model.Pizza;
-import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -20,19 +19,19 @@ import javax.servlet.http.HttpServletRequest;
 @SessionScoped
 public class OrderBean extends LookUpData {
     private DataBeanRemote dbr;
-    private Order order;
+    private MyOrder order;
     
 
     public OrderBean() {
-        order = new Order();
+        order = new MyOrder();
     }
     
     
-    public Order getOrder() {
+    public MyOrder getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(MyOrder order) {
         this.order = order;
     }
     
@@ -52,7 +51,7 @@ public class OrderBean extends LookUpData {
     
      */
     public void addPizza(Pizza pizza) {
-        OrderedItem item = order.getItemByID(pizza.getId());
+        OrderedItem item = order.getItemByID(pizza.getPizzaID());
         
         if (item == null) {
             order.getItems().add(new OrderedItem(pizza, 1)); 
@@ -70,7 +69,7 @@ public class OrderBean extends LookUpData {
     
      */
     public void removePizza(Pizza pizza) {
-        OrderedItem item = order.getItemByID(pizza.getId());
+        OrderedItem item = order.getItemByID(pizza.getPizzaID());
                 
         try {
             if (item.getCount() == 1) {

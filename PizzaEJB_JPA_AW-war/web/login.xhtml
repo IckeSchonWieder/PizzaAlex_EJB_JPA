@@ -8,13 +8,18 @@
     <h:body>
         <h:form>
 
-
-            <h:outputText rendered="#{loginBean.loggedIn}" value="#{label.loggedIn += loginBean.user.role}" />
             <h:outputText rendered="#{not loginBean.loggedIn}" value="#{label.notLoggedIn}" />
+            
+            
+            <h:form rendered="#{loginBean.loggedIn}">
+                <h:outputText value="#{label.loggedIn += loginBean.user.userRole}" />
+                <h:commandLink value="#{label.logOut}" action="#{loginBean.logout()}" />
+            </h:form>
+            
             <br/>
 
             <p>
-                <h:panelGrid columns="2">
+                <h:panelGrid rendered="#{not loginBean.loggedIn}" columns="2">
                     <h:outputLabel for="username" value="#{label.username} " />
                     <h:inputText id="username"  value="#{loginBean.user.username}" />
 
@@ -23,12 +28,12 @@
 
                 </h:panelGrid> 
                 
-                <h:commandButton value="LogIn" action="#{loginBean.login()}" /> <br/>
+                <h:commandButton rendered="#{not loginBean.loggedIn}" value="LogIn" action="#{loginBean.login()}" /> <br/>
                 <h:link outcome="start" value="#{label.index}"/>
             </p>
 
             <hr/>
-            <h:form>
+            <h:form rendered="#{not loginBean.loggedIn}">
                 <h:commandButton value="#{label.btnNew}" action="#{customerBean.newCust()}" />
             </h:form>
        

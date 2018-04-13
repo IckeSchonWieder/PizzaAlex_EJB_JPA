@@ -4,10 +4,11 @@ package de.pizzaalex.ejb;
 import de.pizzaalex.model.Customer;
 import de.pizzaalex.model.MyOrder;
 import de.pizzaalex.model.Pizza;
+import de.pizzaalex.util.Encoder;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,23 +33,31 @@ public class DataBean implements Serializable, DataBeanRemote {
     
      
     @Override
-    public ArrayList<Customer> getCustomers() {
-        Query q = em.createQuery("SELECT * FROM Customer");
-        
-        return (ArrayList)q.getResultList();
+    public List<Customer> getCustomers() {
+        Query q = em.createQuery("SELECT c FROM Customer c");
+        Query q2 = em.createNamedQuery("query2");
+        return q2.getResultList();
     }
 
     @Override
     public Customer storeCustomer(Customer cus) {
+        String pwRemind = cus.getPassword();
+        cus.setPassword(Encoder.hash(cus.getPassword()));
+        System.out.println("gehashd: " +cus.getPassword());
         em.persist(cus);
+        em.flush();
+        em.detach(cus);
+        
+        cus.setPassword(pwRemind);
+        System.out.println("ungehashd: " +cus.getPassword());
         return cus;
     }
     
     
     @Override
-    public ArrayList<Pizza> getMenuList() {
-        Query q = em.createQuery("SELECT * FROM Pizza");
-        return (ArrayList)q.getResultList();
+    public List<Pizza> getMenuList() {
+        Query q = em.createQuery("SELECT p FROM Pizza p");
+        return q.getResultList();
     }
 
     @Override

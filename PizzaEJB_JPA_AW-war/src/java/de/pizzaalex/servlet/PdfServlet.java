@@ -48,9 +48,9 @@ public class PdfServlet extends HttpServlet {
             //abgelegte Bean
             HttpSession sess = req.getSession();
             
-            if (orderBean.getOrder().items.size()>0) {
+            if (orderBean.getOrder().getItems().size()>0) {
                 
-                Order ord = orderBean.getOrder();
+                MyOrder ord = orderBean.getOrder();
                 PdfWriter.getInstance(document, bos);
                 document.open();
                 
