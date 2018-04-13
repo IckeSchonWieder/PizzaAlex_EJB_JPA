@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>PizzaAlex - Index</title>
+    </h:head>
+    <h:body>
+        <h1><h:outputText value="#{label.indexHeader}" /></h1>
+        <h:form rendered="#{loginBean.loggedIn}">
+            <h:outputText value="#{label.loggedIn += loginBean.user.role}" /> <br />
+            <h:commandLink value="#{label.logOut}" action="#{loginBean.logout()}" />
+        </h:form>
+        <hr/>
+        
+        <h2><h:outputText value="#{label.menuHeader}" /></h2>
+        <h:form>
+            <h:dataTable value="#{menuBean.menuList}" var="p">>
+                <h:column>
+                    <h:outputText value="#{p.name}" />
+                </h:column>
+                
+                <h:column>
+                    <h:outputText value="#{p.price}" />
+                </h:column>
+                
+                <h:column>
+                    <h:commandButton action="#{orderBean.addPizza(p)}" value="#{label.add}" />
+                </h:column>
+                
+                <h:column>
+                    <h:commandButton action="#{orderBean.removePizza(p)}" value="#{label.rem}" />
+                </h:column>
+             </h:dataTable>
+        </h:form>
+        <br/>
+        
+        <hr/>
+        <h2><h:outputText value="#{label.orderHeader}" /></h2>
+        
+        
+        <h:outputText rendered="#{orderBean.order.items.size()==0}" 
+           value="#{label.noItem}" />
+       
+        
+        <h:form rendered="#{orderBean.order.items.size()>0}">
+            <h:dataTable value="#{orderBean.order.items}" var="item">>
+                <h:column>
+                    <f:facet name = "header">
+                        <h:outputText value="#{label['pizza.name']}" />
+                    </f:facet> 
+                    <h:outputText value="#{item.pizza.name}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name = "header">
+                        <h:outputText value="#{label['pizza.price']}" />
+                    </f:facet> 
+                    <h:outputText value="#{item.pizza.price}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name = "header">
+                        <h:outputText value="#{label['pizza.count']}" />
+                    </f:facet> 
+                    <h:outputText value="#{item.count}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name = "header">
+                        <h:outputText value="#{label['pizza.subtotal']}" />
+                    </f:facet> 
+                    <h:outputText value="#{item.subTotal()}"/>
+                </h:column>
+            </h:dataTable>
+          
+          <p:commandButton action="login" value="#{label.btnOrder}" />
+          
+        </h:form> 
+        
+    </h:body>
+</html>
+

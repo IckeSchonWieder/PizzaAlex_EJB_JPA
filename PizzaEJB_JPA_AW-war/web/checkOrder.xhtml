@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <head>
+        <title>check order</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h1><h:outputText value="#{label.checkHeader += orderBean.order.cus.lastname}" /></h1>
+        <h2><h:outputText value="#{label.checkOrderHeader}" /></h2>
+        <hr/>
+
+        <h3><h:outputText value="#{label.orderHeader}" /></h3>
+
+        <h:dataTable value="#{orderBean.order.items}" var="item">
+            <h:column>
+                <f:facet name = "header">
+                    <h:outputText value="#{label['pizza.name']}" />
+                </f:facet> 
+                <h:outputText value="#{item.pizza.name}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">
+                    <h:outputText value="#{label['pizza.price']}" />
+                </f:facet> 
+                <h:outputText value="#{item.pizza.price}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">
+                    <h:outputText value="#{label['pizza.count']}" />
+                </f:facet> 
+                <h:outputText value="#{item.count}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">
+                    <h:outputText value="#{label['pizza.subtotal']}" />
+                </f:facet> 
+                <h:outputText value="#{item.subTotal()}"/>
+            </h:column>
+
+        </h:dataTable>
+
+        <h:outputLabel for="outTotal" value="#{label.total} "/>
+        <h:outputText id="outTotal" value="#{orderBean.order.total}"/>
+
+        <br/>
+        <hr/>
+
+        <h3> <h:outputText value="#{label.dataHeader}"/></h3>
+
+        <h:form>
+            <h:outputText value="#{orderBean.order.cus.toString()}"/> <hr />
+            <h:commandButton action="#{orderBean.finalizeOrder()}" 
+                             value="#{label.btnPlace}"/>
+        </h:form>
+    </body>
+</html>

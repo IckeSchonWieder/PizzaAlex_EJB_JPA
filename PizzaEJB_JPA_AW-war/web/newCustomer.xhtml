@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"> 
+    
+    <head>
+        <title>new Customer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h1><h:outputText value="#{label.newCusHeader}" /> </h1>
+        
+        <h:form>
+            <h:panelGrid  columns="3">
+                <h:outputLabel for="inFirst" value="#{label.firstname}:" />
+                <h:inputText id="inFirst" 
+                             value="#{customerBean.selectedCustomer.firstname}"
+                             validator="myValidator"/>
+                <h:message for="inFirst" class="error"/> 
+                
+                <h:outputLabel for="inLast" value="#{label.lastname}:" />
+                <h:inputText id="inLast" 
+                             value="#{customerBean.selectedCustomer.lastname}"
+                             validator="myValidator"/>
+                <h:message for="inLast" class="error"/> 
+                
+                <h:outputLabel for="inStreet" value="#{label.street}:" />
+                <h:inputText id="inStreet" 
+                             value="#{customerBean.selectedCustomer.street}"
+                             validator="myValidator"/>
+                <h:message for="inStreet" class="error"/> 
+                
+                <h:outputLabel for="inCity" value="#{label.city}:" />
+                <h:inputText id="inCity" 
+                             value="#{customerBean.selectedCustomer.city}"
+                             validator="myValidator"/>
+                <h:message for="inCity" class="error"/> 
+                
+                <h:outputLabel for="inUsername" value="#{label.username}:" />
+                <h:inputText id="inUsername" 
+                             value="#{customerBean.selectedCustomer.username}"
+                             validator="myValidator"/>
+                <h:message for="inUsername" class="error"/> 
+                
+                <h:outputLabel for="inPassword" value="#{label.password}:" />
+                <h:inputText id="inPassword" 
+                             value="#{customerBean.selectedCustomer.password}"
+                             validator="myValidator"/>
+                <h:message for="inPassword" class="error"/> 
+                
+            </h:panelGrid>
+            <h:commandButton value="OK" action="#{customerBean.storeCustomer()}" />
+        </h:form>
+    </body>
+</html>

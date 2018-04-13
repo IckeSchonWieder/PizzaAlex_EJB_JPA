@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h1>Hallo Manager</h1>
+        <h:outputText rendered="false" value="Aktive Sessions: " /> <br/>
+   
+        <h:form>
+            <h:selectOneMenu value="#{customerBean.selectedCustomer}"  converter="customerCon">  
+               <f:selectItem itemLabel="#{label.choose}" itemValue="" />  
+               <f:selectItems value="#{customerBean.customers}" var="c" 
+                              itemLabel="#{c.fullName()}" itemValue="#{c}"/>  
+            </h:selectOneMenu>
+            <h:commandButton value="OK" action="#{customerBean.setHasAcc(true)}"/>
+        </h:form>
+        
+        <hr/>
+        
+        <h:panelGrid columns="2" rendered="#{customerBean.hasAcc}">  
+
+            <h:outputLabel for="outFirst" value="#{label.firstname}" />
+            <h:outputText id="outFirst" value="#{customerBean.selectedCustomer.firstname}" />
+
+            <h:outputLabel for="outLast" value="#{label.lastname}" />
+            <h:outputText id="outLast" value="#{customerBean.selectedCustomer.lastname}" />
+
+            <h:outputLabel for="outStreet" value="#{label.street}" />
+            <h:outputText id="outStreet" value="#{customerBean.selectedCustomer.street}" />
+
+            <h:outputLabel for="outCity" value="#{label.city}" />
+            <h:outputText id="outCity" value="#{customerBean.selectedCustomer.city}" />
+
+        </h:panelGrid>  
+       
+        
+        <br />
+        <h:link outcome="start" value="#{label.index}"/>
+        
+    </body>
+</html>

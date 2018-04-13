@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    
+    <application>   
+        <locale-config>
+            <default-locale>de</default-locale>
+            <supported-locale>en</supported-locale>
+            <supported-locale>fa</supported-locale>          
+        </locale-config>  
+        <resource-bundle>
+            <base-name>/labels</base-name>
+            <var>label</var>
+        </resource-bundle>
+        <message-bundle>labels</message-bundle>   
+
+    </application>
+    
+    <navigation-rule>
+        <from-view-id>*</from-view-id>      
+        <navigation-case>
+            <from-outcome>start</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>customer</from-outcome>
+            <to-view-id>/customer.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>manager</from-outcome>
+            <to-view-id>/manager/manager.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cook</from-outcome>
+            <to-view-id>/cook/cook.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>check</from-outcome>
+            <to-view-id>/checkOrder.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finalize</from-outcome>
+            <to-view-id>/finalize.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>newCustomer</from-outcome>
+            <to-view-id>/newCustomer.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>generatePDF</from-outcome>
+            <to-view-id>/generate/Rechnung.pdf</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/error.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
